@@ -132,3 +132,6 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Full',
     },
 }
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_RESTRICT_BY_USER = True

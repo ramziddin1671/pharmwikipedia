@@ -6,7 +6,7 @@ class VidioInline(admin.StackedInline):
     model = Video_Gallery
 
 
-class video(admin.ModelAdmin):
+class VideoGallerys(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ["title", "photo"]})
     ]
@@ -21,5 +21,5 @@ admin.site.register(Subdivision,)
 admin.site.register(Statya,)
 admin.site.register(Conference,)
 admin.site.register(Seminar,)
-admin.site.register(Video,)
+admin.site.register(Video, VideoGallerys,)
 admin.site.register(News,)
