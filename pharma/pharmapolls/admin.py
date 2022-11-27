@@ -23,3 +23,5 @@ admin.site.register(Conference,)
 admin.site.register(Seminar,)
 admin.site.register(Video, VideoGallerys,)
 admin.site.register(News,)
+
+
