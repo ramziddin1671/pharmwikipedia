@@ -37,6 +37,7 @@ class Jurnal(models.Model):
     description = RichTextField()
     date = models.DateField()
     downloadview = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
     file = models.FileField(upload_to='media')
     keyword = models.CharField(max_length=250)
 
@@ -62,6 +63,9 @@ class Statya(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
+    downloadfile = models.FileField(upload_to='media')
+    downloadview = models.IntegerField(default=0)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
