@@ -13,6 +13,7 @@ class Organization(models.Model):
     website = models.CharField(max_length=50)
     image = models.ImageField(upload_to='images/', blank=True)
     logo = models.ImageField(upload_to='images/', blank=True)
+    issn = models.CharField(max_length=150)
     top = models.BooleanField(default=False)
     number_table = models.IntegerField()
 
