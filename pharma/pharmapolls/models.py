@@ -65,6 +65,15 @@ class Statya(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
+    lang = (
+        ("UZ", "UZ"),
+        ("RU", "RU"),
+        ("EN", "EN"),
+    )
+
+    language = models.CharField(max_length=2,
+                             choices=lang,
+                             default="UZ")
     downloadfile = models.FileField(upload_to='media')
     downloadview = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
