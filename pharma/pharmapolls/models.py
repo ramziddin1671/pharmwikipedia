@@ -26,6 +26,7 @@ class Author(models.Model):
     surname = models.CharField(max_length=50)
     family_name = models.CharField(max_length=50)
     description = RichTextField()
+    count_author = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -62,7 +63,7 @@ class Subdivision(models.Model):
 
 
 class Statya(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ManyToManyField(Author)
     jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
     lang = (
@@ -77,6 +78,8 @@ class Statya(models.Model):
     downloadfile = models.FileField(upload_to='media')
     downloadview = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
+    date = models.DateField()
+    keyword = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
@@ -139,4 +142,7 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     phon_number = models.CharField(max_length=20)
     email = models.EmailField()
-    taklif = models.TextField()
+    message = models.TextField()
+    organization = models.CharField(max_length=200)
+    lavozim = models.CharField(max_length=150)
+    theme = models.CharField(max_length=200)
