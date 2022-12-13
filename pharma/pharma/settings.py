@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     #tashqi
     'rest_framework',
     'drf_yasg',
+    'ckeditor',
     #ichki
     'pharmapolls',
 
