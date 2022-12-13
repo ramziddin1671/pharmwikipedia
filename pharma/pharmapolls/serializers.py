@@ -21,7 +21,7 @@ class JurnalSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = ('id', 'author', 'organization', 'name', 'description', 'date', 'downloadview', 'views',
-                  'file', 'keyword', 'image', )
+                  'pdf_file', 'keyword', 'image', )
         model = Jurnal
 
 
@@ -77,5 +77,5 @@ class NewsSerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'name', 'phon_number', 'email', 'taklif', )
+        fields = ('id', 'name', 'phon_number', 'email', 'message', 'organization', 'lavozim', 'theme', )
         model = Contact

@@ -28,9 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #tashqi
     'rest_framework',
+    'drf_yasg',
     #ichki
     'pharmapolls',
-    'ckeditor',
+
 ]
 
 REST_FRAMEWORK = {
@@ -140,3 +141,4 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_RESTRICT_BY_USER = True
+
