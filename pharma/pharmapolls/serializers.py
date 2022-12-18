@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import *
+from django.utils.html import strip_tags
+
 
 
 class OrganizationSerializer(serializers.ModelSerializer):
@@ -44,6 +46,11 @@ class ConferenceSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'date', 'sponsor', )
         model = Conference
+    
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['description'] = strip_tags(instance.description)
+        return data
 
 
 class SeminarSerializer(serializers.ModelSerializer):
