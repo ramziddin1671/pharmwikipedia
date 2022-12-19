@@ -1,127 +1,167 @@
-from .serializers import *
+from . import serializers
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from .models import *
+from rest_framework import generics
+from . import models
+from rest_framework import generics, status
+from rest_framework.response import Response
 from .permissions import IsAuthenticatedOrReadOnly
 
-# Create your views here.
 
 
 class OrganizationList(ListCreateAPIView):
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
+    queryset = models.Organization.objects.all()
+    serializer_class = serializers.OrganizationSerializer
 
 
 class OrganizationDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
+    queryset = models.Organization.objects.all()
+    serializer_class = serializers.OrganizationSerializer
 
 
 class AuthorList(ListCreateAPIView):
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+    queryset = models.Author.objects.all()
+    serializer_class = serializers.AuthorSerializer
 
 
 class AuthorDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
-    queryset = Author.objects.all()
-    serializer_class = AuthorSerializer
+    queryset = models.Author.objects.all()
+    serializer_class = serializers.AuthorSerializer
 
 
 class JurnalList(ListCreateAPIView):
-    queryset = Jurnal.objects.all()
-    serializer_class = JurnalSerializer
+    queryset = models.Jurnal.objects.all()
+    serializer_class = serializers.JurnalSerializer
+
+
+class PopularJurnalList(generics.ListAPIView):
+    queryset = models.Jurnal.objects.all().order_by('-downloadview')[:12]
+    serializer_class = serializers.JurnalSerializer
+
 
 
 class JurnalDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Jurnal.objects.all()
-    serializer_class = JurnalSerializer
+    queryset = models.Jurnal.objects.all()
+    serializer_class = serializers.JurnalSerializer
 
 
 class SubdivisionList(ListCreateAPIView):
-    queryset = Subdivision.objects.all()
-    serializer_class = SubdivisionSerializer
+    queryset = models.Subdivision.objects.all()
+    serializer_class = serializers.SubdivisionSerializer
 
 
 class SubdivisionDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Subdivision.objects.all()
-    serializer_class = SubdivisionSerializer
+    queryset = models.Subdivision.objects.all()
+    serializer_class = serializers.SubdivisionSerializer
 
 
 class StatyaList(ListCreateAPIView):
-    queryset = Statya.objects.all()
-    serializer_class = StatyaSerializer
+    queryset = models.Statya.objects.all()
+    serializer_class = serializers.StatyaSerializer
 
 
 class StatyaDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Statya.objects.all()
-    serializer_class = StatyaSerializer
+    queryset = models.Statya.objects.all()
+    serializer_class = serializers.StatyaSerializer
+
+
+class StatisticsApiView(generics.ListAPIView):
+    queryset = None
+    serializer_class = None
+
+    def get(self, request, *args, **kwargs):
+        context = {'request': request}
+        journals  = models.Jurnal.objects.all().count()
+        authors  = models.Author.objects.all().count()
+        organizations  = models.Organization.objects.all().count()
+        seminars  = models.Seminar.objects.all().count()
+
+
+
+        payload = {
+            'journals': journals,
+            'authors': authors,
+            'organizations': organizations,
+            'seminars': seminars,
+        }
+        return Response(payload, status=status.HTTP_200_OK)
+
 
 
 class ConferenceList(ListCreateAPIView):
-    queryset = Conference.objects.all()
-    serializer_class = ConferenceSerializer
+    queryset = models.Conference.objects.all()
+    serializer_class = serializers.ConferenceSerializer
 
 
 class ConferenceDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Conference.objects.all()
-    serializer_class = ConferenceSerializer
+    queryset = models.Conference.objects.all()
+    serializer_class = serializers.ConferenceSerializer
+
+
+class PlanningConferenceApiView(generics.ListAPIView):
+    queryset = models.Conference.objects.all().order_by('date')[:12]
+    serializer_class = serializers.ConferenceSerializer
+
+
+
 
 
 class SeminarList(ListCreateAPIView):
-    queryset = Seminar.objects.all()
-    serializer_class = SeminarSerializer
+    queryset = models.Seminar.objects.all()
+    serializer_class = serializers.SeminarSerializer
 
 
 class SeminarDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Seminar.objects.all()
-    serializer_class = SeminarSerializer
+    queryset = models.Seminar.objects.all()
+    serializer_class = serializers.SeminarSerializer
 
 
 class VideoList(ListCreateAPIView):
-    queryset = Video.objects.all()
-    serializer_class = VideoSerializer
+    queryset = models.Video.objects.all()
+    serializer_class = serializers.VideoSerializer
 
 
 class VideoDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Video.objects.all()
-    serializer_class = VideoSerializer
+    queryset = models.Video.objects.all()
+    serializer_class = serializers.VideoSerializer
 
 
 class Video_GalleryList(ListCreateAPIView):
-    queryset = Video_Gallery.objects.all()
-    serializer_class = Video_GallerySerializer
+    queryset = models.Video_Gallery.objects.all()
+    serializer_class = serializers.Video_GallerySerializer
 
 
 class Video_GalleryDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Video_Gallery.objects.all()
-    serializer_class = Video_GallerySerializer
+    queryset = models.Video_Gallery.objects.all()
+    serializer_class = serializers.Video_GallerySerializer
 
 
 class NewsList(ListCreateAPIView):
-    queryset = News.objects.all()
-    serializer_class = NewsSerializer
+    queryset = models.News.objects.all()
+    serializer_class = serializers.NewsSerializer
 
 
 class NewsDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = News.objects.all()
-    serializer_class = NewsSerializer
+    queryset = models.News.objects.all()
+    serializer_class = serializers.NewsSerializer
 
 
 class ContactList(ListCreateAPIView):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
+    queryset = models.Contact.objects.all()
+    serializer_class = serializers.ContactSerializer
 
 
 class ContactDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
+    queryset = models.Contact.objects.all()
+    serializer_class = serializers.ContactSerializer
+
