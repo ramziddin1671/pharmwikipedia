@@ -75,10 +75,10 @@ class StatisticsApiView(generics.ListAPIView):
 
     def get(self, request, *args, **kwargs):
         context = {'request': request}
-        journals  = models.Jurnal.objects.all().count()
-        authors  = models.Author.objects.all().count()
-        organizations  = models.Organization.objects.all().count()
-        seminars  = models.Seminar.objects.all().count()
+        journals = models.Jurnal.objects.all().count()
+        authors = models.Author.objects.all().count()
+        organizations = models.Organization.objects.all().count()
+        seminars = models.Seminar.objects.all().count()
 
 
 
@@ -89,7 +89,6 @@ class StatisticsApiView(generics.ListAPIView):
             'seminars': seminars,
         }
         return Response(payload, status=status.HTTP_200_OK)
-
 
 
 class ConferenceList(ListCreateAPIView):
@@ -106,9 +105,6 @@ class ConferenceDetail(RetrieveUpdateDestroyAPIView):
 class PlanningConferenceApiView(generics.ListAPIView):
     queryset = models.Conference.objects.all().order_by('date')[:12]
     serializer_class = serializers.ConferenceSerializer
-
-
-
 
 
 class SeminarList(ListCreateAPIView):

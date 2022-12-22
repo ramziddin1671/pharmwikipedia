@@ -26,6 +26,7 @@ class Author(models.Model):
     surname = models.CharField(max_length=50)
     family_name = models.CharField(max_length=50)
     description = RichTextField()
+    work = models.CharField(max_length=250)
     count_author = models.IntegerField(default=0)
 
     def __str__(self):
@@ -57,6 +58,7 @@ class Subdivision(models.Model):
     facs_number = models.CharField(max_length=13)
     email = models.EmailField()
     website = models.CharField(max_length=50)
+    logo = models.ImageField(upload_to='images/', blank=True)
 
     def __str__(self):
         return self.name
@@ -91,6 +93,7 @@ class Conference(models.Model):
     description = RichTextField()
     adress = models.CharField(max_length=500)
     phon_number = models.CharField(max_length=13)
+    email = models.EmailField()
     date = models.DateField()
     sponsor = models.CharField(max_length=250)
 
@@ -103,6 +106,7 @@ class Seminar(models.Model):
     name = models.CharField(max_length=500)
     description = RichTextField()
     link = models.URLField()
+    linkbutton = models.CharField(max_length=50)
     phon_number = models.CharField(max_length=13)
     date = models.DateField()
     sponsor = models.CharField(max_length=250)
@@ -113,7 +117,10 @@ class Seminar(models.Model):
 
 class Video(models.Model):
     title = models.CharField(max_length=250)
+    organization = models.CharField(max_length=150)
     photo = models.ImageField(upload_to='images/', blank=True)
+    views = models.IntegerField(default=0)
+    date = models.DateField()
 
     def __str__(self):
         return self.title
@@ -133,6 +140,7 @@ class News(models.Model):
     description = RichTextField()
     date = models.DateField()
     photo = models.ImageField(upload_to='images/', blank=True)
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title

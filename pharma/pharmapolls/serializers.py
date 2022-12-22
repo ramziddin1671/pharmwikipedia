@@ -15,7 +15,7 @@ class OrganizationSerializer(serializers.ModelSerializer):
 class AuthorSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'name', 'surname', 'family_name', 'description', )
+        fields = ('id', 'name', 'surname', 'family_name', 'description', 'work', 'count_author', )
         model = Author
 
 
@@ -30,21 +30,21 @@ class JurnalSerializer(serializers.ModelSerializer):
 class SubdivisionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'facs_number', 'email', 'website', )
+        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'facs_number', 'email', 'website', 'logo', )
         model = Subdivision
 
 
 class StatyaSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'author', 'name', 'jurnal', 'downloadfile', 'downloadview', 'views', )
+        fields = ('id', 'author', 'name', 'jurnal', 'language', 'downloadfile', 'downloadview', 'views', 'date', 'keyword', )
         model = Statya
 
 
 class ConferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'date', 'sponsor', )
+        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'date', 'sponsor', 'email', )
         model = Conference
     
     def to_representation(self, instance):
@@ -56,14 +56,14 @@ class ConferenceSerializer(serializers.ModelSerializer):
 class SeminarSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'link', 'phon_number', 'date', 'sponsor', )
+        fields = ('id', 'organization', 'name', 'description', 'link', 'linkbutton', 'phon_number', 'date', 'sponsor', )
         model = Seminar
 
 
 class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'title', 'photo', )
+        fields = ('id', 'title', 'photo', 'organization', 'views', 'date', )
         model = Video
 
 
@@ -77,7 +77,7 @@ class Video_GallerySerializer(serializers.ModelSerializer):
 class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'title', 'description', 'date', 'photo', )
+        fields = ('id', 'title', 'description', 'date', 'photo', 'views', )
         model = News
 
 
