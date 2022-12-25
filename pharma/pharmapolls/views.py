@@ -2,6 +2,7 @@ from . import serializers
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework import generics
 from . import models
+from . import paginations
 from rest_framework import generics, status
 from rest_framework.response import Response
 from .permissions import IsAuthenticatedOrReadOnly
@@ -30,9 +31,10 @@ class AuthorDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.AuthorSerializer
 
 
-class JurnalList(ListCreateAPIView):
+class JurnalList(generics.ListAPIView):
     queryset = models.Jurnal.objects.all()
     serializer_class = serializers.JurnalSerializer
+    pagination_class = paginations.PaginateBy12
 
 
 class PopularJurnalList(generics.ListAPIView):
@@ -58,10 +60,11 @@ class SubdivisionDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.SubdivisionSerializer
 
 
-class StatyaList(ListCreateAPIView):
+class StatyaList(generics.ListAPIView):
     queryset = models.Statya.objects.all()
     serializer_class = serializers.StatyaSerializer
-
+    pagination_class = paginations.PaginateBy12
+    
 
 class StatyaDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
