@@ -3,16 +3,16 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.OrganizationList.as_view()),
+    path("organizations", views.OrganizationList.as_view()),  #used
     path("organization/<int:pk>/", views.OrganizationDetail.as_view()),
     path("authors/", views.AuthorList.as_view()),
     path("author/<int:pk>/", views.AuthorDetail.as_view()),
-    path("journals/", views.JurnalList.as_view()),
+    path("journals/", views.JurnalList.as_view()),  #used
     path("journal/<int:pk>/", views.JurnalDetail.as_view()),
     path("popular_journals/", views.PopularJurnalList.as_view()),  #used
     path("subdivisions/", views.SubdivisionList.as_view()),
     path("subdivision/<int:pk>/", views.SubdivisionDetail.as_view()),
-    path("articles/", views.StatyaList.as_view()),
+    path("articles/", views.StatyaList.as_view()),  #used
     path("article/<int:pk>/", views.StatyaDetail.as_view()),
     path("conferences/", views.ConferenceList.as_view()),
     path("conference/<int:pk>/", views.ConferenceDetail.as_view()),

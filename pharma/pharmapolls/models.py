@@ -65,18 +65,16 @@ class Subdivision(models.Model):
 
 
 class Statya(models.Model):
-    author = models.ManyToManyField(Author)
-    jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
-    name = models.CharField(max_length=250)
     lang = (
         ("UZ", "UZ"),
         ("RU", "RU"),
         ("EN", "EN"),
     )
 
-    language = models.CharField(max_length=2,
-                             choices=lang,
-                             default="UZ")
+    author = models.ManyToManyField(Author)
+    jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
+    language = models.CharField(max_length=2, choices=lang,default="UZ")
     downloadfile = models.FileField(upload_to='media')
     downloadview = models.IntegerField(default=0)
     views = models.IntegerField(default=0)

@@ -18,8 +18,15 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'surname', 'family_name', 'description', 'work', 'count_author', )
         model = Author
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['description'] = strip_tags(instance.description)
+        return data
+
 
 class JurnalSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+    organization = serializers.StringRelatedField()
 
     class Meta:
         fields = ('id', 'author', 'organization', 'name', 'description', 'date', 'downloadview', 'views',
@@ -35,6 +42,9 @@ class SubdivisionSerializer(serializers.ModelSerializer):
 
 
 class StatyaSerializer(serializers.ModelSerializer):
+    jurnal = serializers.StringRelatedField()
+    author = AuthorSerializer(read_only=True, many=True)
+
 
     class Meta:
         fields = ('id', 'author', 'name', 'jurnal', 'language', 'downloadfile', 'downloadview', 'views', 'date', 'keyword', )
