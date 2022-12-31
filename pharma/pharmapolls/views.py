@@ -20,7 +20,7 @@ class OrganizationDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.OrganizationSerializer
 
 
-class AuthorList(ListCreateAPIView):
+class AuthorList(generics.ListAPIView):
     queryset = models.Author.objects.all()
     serializer_class = serializers.AuthorSerializer
 
@@ -43,7 +43,7 @@ class PopularJurnalList(generics.ListAPIView):
 
 
 
-class JurnalDetail(RetrieveUpdateDestroyAPIView):
+class JurnalDetail(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = models.Jurnal.objects.all()
     serializer_class = serializers.JurnalSerializer
@@ -61,7 +61,7 @@ class SubdivisionDetail(RetrieveUpdateDestroyAPIView):
 
 
 class StatyaList(generics.ListAPIView):
-    queryset = models.Statya.objects.all()
+    queryset = models.Statya.objects.all().order_by('-downloadview')[:12]
     serializer_class = serializers.StatyaSerializer
     pagination_class = paginations.PaginateBy12
     
@@ -121,8 +121,8 @@ class SeminarDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.SeminarSerializer
 
 
-class VideoList(ListCreateAPIView):
-    queryset = models.Video.objects.all()
+class VideoList(generics.ListAPIView):
+    queryset = models.Video.objects.all().order_by('-id')
     serializer_class = serializers.VideoSerializer
 
 

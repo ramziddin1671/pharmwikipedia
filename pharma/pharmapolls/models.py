@@ -72,7 +72,7 @@ class Statya(models.Model):
     )
 
     author = models.ManyToManyField(Author)
-    jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE)
+    jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE, related_name="journal_article")
     name = models.CharField(max_length=250)
     language = models.CharField(max_length=2, choices=lang,default="UZ")
     downloadfile = models.FileField(upload_to='media')

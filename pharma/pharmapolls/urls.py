@@ -20,7 +20,7 @@ urlpatterns = [
     path("seminars/", views.SeminarList.as_view()),
     path("seminar/<int:pk>/", views.SeminarDetail.as_view()),
     path("statistics/", views.StatisticsApiView.as_view()),  #used
-    path("videos/", views.VideoList.as_view()),
+    path("videos/", views.VideoList.as_view()), #used
     path("video/<int:pk>/", views.VideoDetail.as_view()),
     path("video_gallery/", views.Video_GalleryList.as_view()),
     path("video_gallery/<int:pk>/", views.Video_GalleryDetail.as_view()),

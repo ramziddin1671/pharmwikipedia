@@ -24,13 +24,25 @@ class AuthorSerializer(serializers.ModelSerializer):
         return data
 
 
+class StatyaSerializer(serializers.ModelSerializer):
+    jurnal = serializers.StringRelatedField()
+    author = AuthorSerializer(read_only=True, many=True)
+
+
+    class Meta:
+        fields = ('id', 'author', 'name', 'jurnal', 'language', 'downloadfile', 'downloadview', 'views', 'date', 'keyword', )
+        model = Statya
+
+
+
 class JurnalSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     organization = serializers.StringRelatedField()
+    articles = StatyaSerializer(source='journal_article')
 
     class Meta:
         fields = ('id', 'author', 'organization', 'name', 'description', 'date', 'downloadview', 'views',
-                  'pdf_file', 'keyword', 'image', )
+                  'pdf_file', 'keyword', 'image', 'articles' )
         model = Jurnal
 
 
@@ -41,14 +53,7 @@ class SubdivisionSerializer(serializers.ModelSerializer):
         model = Subdivision
 
 
-class StatyaSerializer(serializers.ModelSerializer):
-    jurnal = serializers.StringRelatedField()
-    author = AuthorSerializer(read_only=True, many=True)
 
-
-    class Meta:
-        fields = ('id', 'author', 'name', 'jurnal', 'language', 'downloadfile', 'downloadview', 'views', 'date', 'keyword', )
-        model = Statya
 
 
 class ConferenceSerializer(serializers.ModelSerializer):
