@@ -9,12 +9,12 @@ from .permissions import IsAuthenticatedOrReadOnly
 
 
 
-class OrganizationList(ListCreateAPIView):
+class OrganizationList(generics.ListAPIView):
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
 
 
-class OrganizationDetail(RetrieveUpdateDestroyAPIView):
+class OrganizationDetail(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = models.Organization.objects.all()
     serializer_class = serializers.OrganizationSerializer
@@ -25,10 +25,10 @@ class AuthorList(generics.ListAPIView):
     serializer_class = serializers.AuthorSerializer
 
 
-class AuthorDetail(RetrieveUpdateDestroyAPIView):
+class AuthorDetail(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly, )
     queryset = models.Author.objects.all()
-    serializer_class = serializers.AuthorSerializer
+    serializer_class = serializers.AuthorDetailSerializer
 
 
 class JurnalList(generics.ListAPIView):
@@ -46,7 +46,7 @@ class PopularJurnalList(generics.ListAPIView):
 class JurnalDetail(generics.RetrieveAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = models.Jurnal.objects.all()
-    serializer_class = serializers.JurnalSerializer
+    serializer_class = serializers.JurnalDetailSerializer
 
 
 class SubdivisionList(ListCreateAPIView):
@@ -65,11 +65,6 @@ class StatyaList(generics.ListAPIView):
     serializer_class = serializers.StatyaSerializer
     pagination_class = paginations.PaginateBy12
     
-
-class StatyaDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
-    queryset = models.Statya.objects.all()
-    serializer_class = serializers.StatyaSerializer
 
 
 class StatisticsApiView(generics.ListAPIView):

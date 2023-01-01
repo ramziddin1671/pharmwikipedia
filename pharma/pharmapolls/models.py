@@ -2,7 +2,6 @@ from ckeditor.fields import RichTextField
 from django.db import models
 
 
-# Create your models here.
 class Organization(models.Model):
     name = models.CharField(max_length=500)
     description = RichTextField()
@@ -50,7 +49,7 @@ class Jurnal(models.Model):
 
 
 class Subdivision(models.Model):
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name='organization_subdivision')
     name = models.CharField(max_length=500)
     description = RichTextField()
     adress = models.CharField(max_length=500)
@@ -71,7 +70,7 @@ class Statya(models.Model):
         ("EN", "EN"),
     )
 
-    author = models.ManyToManyField(Author)
+    author = models.ManyToManyField(Author, related_name="article_author")
     jurnal = models.ForeignKey(Jurnal, on_delete=models.CASCADE, related_name="journal_article")
     name = models.CharField(max_length=250)
     language = models.CharField(max_length=2, choices=lang,default="UZ")
