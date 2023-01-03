@@ -110,9 +110,6 @@ class JurnalDetailSerializer(serializers.ModelSerializer):
         return data
 
 
-
-
-
 class JurnalSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField()
     organization = serializers.StringRelatedField()
