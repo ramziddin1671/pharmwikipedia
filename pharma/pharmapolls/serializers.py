@@ -64,6 +64,9 @@ class StatyaSerializer(serializers.ModelSerializer):
 
 
 
+
+
+
 class StatyaforAuthorSerializer(serializers.ModelSerializer):
     jurnal = serializers.StringRelatedField()
 
@@ -129,7 +132,7 @@ class JurnalSerializer(serializers.ModelSerializer):
 class ConferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'date', 'sponsor', 'email', )
+        fields = ('id', 'organization', 'name', 'description', 'adress', 'phon_number', 'date', 'sponsor', 'email','archive' )
         model = models.Conference
     
     def to_representation(self, instance):
@@ -141,8 +144,13 @@ class ConferenceSerializer(serializers.ModelSerializer):
 class SeminarSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'link', 'linkbutton', 'phon_number', 'date', 'sponsor', )
+        fields = ('id', 'organization', 'name', 'description', 'link', 'linkbutton', 'phon_number', 'date', 'sponsor', 'archive' )
         model = models.Seminar
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['description'] = strip_tags(instance.description)
+        return data
 
 
 class VideoSerializer(serializers.ModelSerializer):
@@ -164,6 +172,11 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'title', 'description', 'date', 'photo', 'views', )
         model = models.News
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['description'] = strip_tags(instance.description)
+        return data
 
 
 class ContactSerializer(serializers.ModelSerializer):

@@ -3,15 +3,27 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework import generics
 from . import models
 from . import paginations
+import datetime
 from rest_framework import generics, status
 from rest_framework.response import Response
+from django.db.models import Q
+from django.db.models import Count
 from .permissions import IsAuthenticatedOrReadOnly
 
 
 
 class OrganizationList(generics.ListAPIView):
-    queryset = models.Organization.objects.all()
+    queryset = models.Organization.objects.all().order_by('-id')
     serializer_class = serializers.OrganizationSerializer
+
+
+
+class PopOrganizationList(generics.ListAPIView):
+    queryset = models.Organization.objects.filter(top=True).order_by('number_table')
+    serializer_class = serializers.OrganizationSerializer
+
+
+
 
 
 class OrganizationDetail(generics.RetrieveAPIView):
@@ -21,8 +33,12 @@ class OrganizationDetail(generics.RetrieveAPIView):
 
 
 class AuthorList(generics.ListAPIView):
-    queryset = models.Author.objects.all()
+    queryset = models.Author.objects.all().annotate(articles=Count('article_author')).order_by('-articles')
     serializer_class = serializers.AuthorSerializer
+    pagination_class = paginations.PaginateBy20
+
+
+
 
 
 class AuthorDetail(generics.RetrieveAPIView):
@@ -78,8 +94,6 @@ class StatisticsApiView(generics.ListAPIView):
         organizations = models.Organization.objects.all().count()
         seminars = models.Seminar.objects.all().count()
 
-
-
         payload = {
             'journals': journals,
             'authors': authors,
@@ -101,13 +115,31 @@ class ConferenceDetail(RetrieveUpdateDestroyAPIView):
 
 
 class PlanningConferenceApiView(generics.ListAPIView):
-    queryset = models.Conference.objects.all().order_by('date')[:12]
-    serializer_class = serializers.ConferenceSerializer
+    queryset = None
+    serializer_class = None
+
+    def get(self, request):
+        today = datetime.datetime.today()
+        ended = models.Conference.objects.filter(Q(date__lt=today))
+        ended.update(archive=True)
+        conference = models.Conference.objects.filter(archive=False).order_by('date')[:12]
+        serializer = serializers.ConferenceSerializer(conference, many=True)
+        return Response(serializer.data)
+
 
 
 class SeminarList(ListCreateAPIView):
-    queryset = models.Seminar.objects.all()
-    serializer_class = serializers.SeminarSerializer
+    queryset = None
+    serializer_class = None
+
+    def get(self, request):
+        today = datetime.datetime.today()
+        ended = models.Seminar.objects.filter(Q(date__lt=today))
+        ended.update(archive=True)
+        seminar = models.Seminar.objects.filter(archive=False).order_by('date')
+        serializer = serializers.SeminarSerializer(seminar, many=True)
+        return Response(serializer.data)
+
 
 
 class SeminarDetail(RetrieveUpdateDestroyAPIView):

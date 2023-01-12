@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path("organizations", views.OrganizationList.as_view()),  #used
+    path("popular_organizations", views.PopOrganizationList.as_view()),  #used
     path("organization/<int:pk>/", views.OrganizationDetail.as_view()), #used
     path("authors/", views.AuthorList.as_view()), #used
     path("author/<int:pk>/", views.AuthorDetail.as_view()), #used
