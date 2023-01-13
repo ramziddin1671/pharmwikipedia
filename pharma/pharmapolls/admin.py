@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import *
+from . import models
 # Register your models here.
 
 class VidioInline(admin.StackedInline):
-    model = Video_Gallery
+    model = models.Video_Gallery
 
 
 class VideoGallerys(admin.ModelAdmin):
@@ -13,15 +13,26 @@ class VideoGallerys(admin.ModelAdmin):
     inlines = [VidioInline]
 
 
-admin.site.register(Organization,)
-admin.site.register(Author,)
-admin.site.register(Jurnal,)
-admin.site.register(Contact)
-admin.site.register(Subdivision,)
-admin.site.register(Statya,)
-admin.site.register(Conference,)
-admin.site.register(Seminar,)
-admin.site.register(Video, VideoGallerys,)
-admin.site.register(News,)
+@admin.register(models.Conference)
+class ConferanceAdmin(admin.ModelAdmin):
+    list_display = ['name', 'date', 'archive']
+
+
+
+@admin.register(models.Seminar)
+class ConferanceAdmin(admin.ModelAdmin):
+    list_display = ['name', 'date', 'archive']
+
+
+
+
+admin.site.register(models.Organization,)
+admin.site.register(models.Author,)
+admin.site.register(models.Jurnal,)
+admin.site.register(models.Contact)
+admin.site.register(models.Subdivision,)
+admin.site.register(models.Statya,)
+admin.site.register(models.Video, VideoGallerys,)
+admin.site.register(models.News,)
 
 

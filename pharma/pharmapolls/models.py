@@ -14,7 +14,7 @@ class Organization(models.Model):
     logo = models.ImageField(upload_to='images/', blank=True)
     issn = models.CharField(max_length=150)
     top = models.BooleanField(default=False)
-    number_table = models.IntegerField()
+    number_table = models.IntegerField(unique=True)
 
     def __str__(self):
         return self.name
@@ -93,6 +93,7 @@ class Conference(models.Model):
     email = models.EmailField()
     date = models.DateField()
     sponsor = models.CharField(max_length=250)
+    archive = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -107,6 +108,7 @@ class Seminar(models.Model):
     phon_number = models.CharField(max_length=13)
     date = models.DateField()
     sponsor = models.CharField(max_length=250)
+    archive = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
