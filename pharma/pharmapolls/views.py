@@ -40,7 +40,7 @@ class AuthorDetail(generics.RetrieveAPIView):
 
 
 class JurnalList(generics.ListAPIView):
-    queryset = models.Jurnal.objects.all()
+    queryset = models.Jurnal.objects.all()#Jurnal listni date bo'yicha qilish kere
     serializer_class = serializers.JurnalSerializer
     pagination_class = paginations.PaginateBy12
 

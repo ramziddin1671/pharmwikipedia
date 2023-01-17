@@ -1,6 +1,9 @@
 from django.contrib import admin
 from . import models
+from modeltranslation.admin import TranslationAdmin
 # Register your models here.
+from .models import Organization
+
 
 class VidioInline(admin.StackedInline):
     model = models.Video_Gallery
@@ -24,9 +27,11 @@ class ConferanceAdmin(admin.ModelAdmin):
     list_display = ['name', 'date', 'archive']
 
 
+class OrganizationAdmin(TranslationAdmin):
+    model = Organization
 
 
-admin.site.register(models.Organization,)
+admin.site.register(models.Organization, OrganizationAdmin,)
 admin.site.register(models.Author,)
 admin.site.register(models.Jurnal,)
 admin.site.register(models.Contact)

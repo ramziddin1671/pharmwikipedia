@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc3c3bcd-bb59-452e-af29-a5300e6ffe43" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pharma/pharmapolls/translation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharma/pharma/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharma/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharma/pharma/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharma/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,5 +100,16 @@
       <updated>1669466083463</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
