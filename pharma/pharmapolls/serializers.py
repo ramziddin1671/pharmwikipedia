@@ -144,7 +144,7 @@ class ConferenceSerializer(serializers.ModelSerializer):
 class SeminarSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('id', 'organization', 'name', 'description', 'link', 'linkbutton', 'phon_number', 'date', 'sponsor', 'archive' )
+        fields = ('id', 'organization', 'name', 'description', 'link', 'linkbutton', 'phon_number', 'date', 'sponsor', 'archive', )
         model = models.Seminar
 
     def to_representation(self, instance):
@@ -184,3 +184,25 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'name', 'phon_number', 'email', 'message', 'organization', 'lavozim', 'theme', )
         model = models.Contact
+
+
+class FaqSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ('question', 'answer', )
+        model = models.Faq
+
+
+class BannerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ('title', 'subtitle', 'button', 'video_banner', )
+        model = models.Banner
+
+
+class WebcontactSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ('phone', 'email', 'address', )
+        model = models.Webcontact
+

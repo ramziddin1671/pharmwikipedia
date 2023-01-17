@@ -153,3 +153,33 @@ class Contact(models.Model):
     organization = models.CharField(max_length=200)
     lavozim = models.CharField(max_length=150)
     theme = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class Faq(models.Model):
+    question = models.CharField(max_length=500)
+    answer = RichTextField()
+
+    def __str__(self):
+        return self.question
+
+
+class Banner(models.Model):
+    title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=200)
+    button = models.CharField(max_length=20)
+    video_banner = models.FileField(upload_to='media', blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Webcontact(models.Model):
+    phone = models.CharField(max_length=20)
+    email = models.EmailField()
+    address = models.CharField(max_length=300)
+
+    def __str__(self):
+        return self.phone

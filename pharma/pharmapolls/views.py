@@ -11,19 +11,14 @@ from django.db.models import Count
 from .permissions import IsAuthenticatedOrReadOnly
 
 
-
 class OrganizationList(generics.ListAPIView):
     queryset = models.Organization.objects.all().order_by('-id')
     serializer_class = serializers.OrganizationSerializer
 
 
-
 class PopOrganizationList(generics.ListAPIView):
     queryset = models.Organization.objects.filter(top=True).order_by('number_table')
     serializer_class = serializers.OrganizationSerializer
-
-
-
 
 
 class OrganizationDetail(generics.RetrieveAPIView):
@@ -36,9 +31,6 @@ class AuthorList(generics.ListAPIView):
     queryset = models.Author.objects.all().annotate(articles=Count('article_author')).order_by('-articles')
     serializer_class = serializers.AuthorSerializer
     pagination_class = paginations.PaginateBy20
-
-
-
 
 
 class AuthorDetail(generics.RetrieveAPIView):
@@ -56,7 +48,6 @@ class JurnalList(generics.ListAPIView):
 class PopularJurnalList(generics.ListAPIView):
     queryset = models.Jurnal.objects.all().order_by('-downloadview')[:12]
     serializer_class = serializers.JurnalSerializer
-
 
 
 class JurnalDetail(generics.RetrieveAPIView):
@@ -81,7 +72,6 @@ class StatyaList(generics.ListAPIView):
     serializer_class = serializers.StatyaSerializer
     pagination_class = paginations.PaginateBy12
     
-
 
 class StatisticsApiView(generics.ListAPIView):
     queryset = None
@@ -127,7 +117,6 @@ class PlanningConferenceApiView(generics.ListAPIView):
         return Response(serializer.data)
 
 
-
 class SeminarList(ListCreateAPIView):
     queryset = None
     serializer_class = None
@@ -139,7 +128,6 @@ class SeminarList(ListCreateAPIView):
         seminar = models.Seminar.objects.filter(archive=False).order_by('date')
         serializer = serializers.SeminarSerializer(seminar, many=True)
         return Response(serializer.data)
-
 
 
 class SeminarDetail(RetrieveUpdateDestroyAPIView):
@@ -191,3 +179,17 @@ class ContactDetail(RetrieveUpdateDestroyAPIView):
     queryset = models.Contact.objects.all()
     serializer_class = serializers.ContactSerializer
 
+
+class FaqList(ListCreateAPIView):
+    queryset = models.Faq.objects.all()
+    serializer_class = serializers.FaqSerializer
+
+
+class BannerList(ListCreateAPIView):
+    queryset = models.Banner.objects.all()
+    serializer_class = serializers.BannerSerializer
+
+
+class WebcontactList(ListCreateAPIView):
+    queryset = models.Webcontact.objects.all()
+    serializer_class = serializers.WebcontactSerializer

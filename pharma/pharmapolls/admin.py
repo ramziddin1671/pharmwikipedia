@@ -34,5 +34,8 @@ admin.site.register(models.Subdivision,)
 admin.site.register(models.Statya,)
 admin.site.register(models.Video, VideoGallerys,)
 admin.site.register(models.News,)
+admin.site.register(models.Banner, )
+admin.site.register(models.Faq,)
+admin.site.register(models.Webcontact,)
 
 
