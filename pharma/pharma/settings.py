@@ -31,7 +31,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'ckeditor',
-    'crispy_forms',
     #ichki
     'pharmapolls',
 
@@ -130,6 +129,26 @@ LANGUAGES = [
     ('ru', "Russian"),
     ('en', "English"),
 ]
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('uz', gettext('O\'zbek')),
+    ('ru', gettext('Russian')),
+    ('en', gettext('English')),
+)
+
+MODELTRANSLATION_LANGUAGES = ('uz', 'ru', 'en')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('uz', 'ru', 'en')
+
+
+MODELTRANSLATION_TRANSLATION_FILES = (
+    'pharmapolls.translation',
+)
+
+
+
+
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 # Static files (CSS, JavaScript, Images)

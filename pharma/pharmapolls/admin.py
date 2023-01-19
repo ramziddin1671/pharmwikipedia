@@ -1,8 +1,7 @@
 from django.contrib import admin
 from . import models
-from modeltranslation.admin import TranslationAdmin
-# Register your models here.
 from .models import Organization
+from modeltranslation.admin import TranslationAdmin
 
 
 class VidioInline(admin.StackedInline):
@@ -31,7 +30,7 @@ class OrganizationAdmin(TranslationAdmin):
     model = Organization
 
 
-admin.site.register(models.Organization, OrganizationAdmin,)
+admin.site.register(models.Organization, OrganizationAdmin)
 admin.site.register(models.Author,)
 admin.site.register(models.Jurnal,)
 admin.site.register(models.Contact)

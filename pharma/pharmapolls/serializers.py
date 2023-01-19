@@ -24,14 +24,16 @@ class OrganizationSerializer(serializers.ModelSerializer):
     subdivisions = SubdivisionSerializer(many=True, source='organization_subdivision')
 
     class Meta:
-        fields = ('id', 'name', 'description', 'adress', 'phon_number', 'facs_number', 'email', 'website',
+        fields = ('id', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'adress_uz', 'adress_ru', 'adress_en', 'phon_number', 'facs_number', 'email', 'website',
                   'image', 'logo', 'issn', 'top', 'number_table', 'subdivisions')
         model = models.Organization
 
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['description'] = strip_tags(instance.description)
+        data['description_uz'] = strip_tags(instance.description)
+        data['description_ru'] = strip_tags(instance.description)
+        data['description_en'] = strip_tags(instance.description)
         return data
 
 

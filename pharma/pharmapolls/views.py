@@ -74,8 +74,8 @@ class StatyaList(generics.ListAPIView):
     
 
 class StatisticsApiView(generics.ListAPIView):
-    queryset = None
-    serializer_class = None
+    queryset = models.Jurnal.objects.all()
+    serializer_class = serializers.StatyaSerializer
 
     def get(self, request, *args, **kwargs):
         context = {'request': request}
@@ -105,8 +105,8 @@ class ConferenceDetail(RetrieveUpdateDestroyAPIView):
 
 
 class PlanningConferenceApiView(generics.ListAPIView):
-    queryset = None
-    serializer_class = None
+    queryset = models.Conference.objects.all()
+    serializer_class = serializers.ConferenceSerializer
 
     def get(self, request):
         today = datetime.datetime.today()
@@ -119,7 +119,7 @@ class PlanningConferenceApiView(generics.ListAPIView):
 
 class SeminarList(ListCreateAPIView):
     queryset = None
-    serializer_class = None
+    serializer_class = serializers.SeminarSerializer
 
     def get(self, request):
         today = datetime.datetime.today()
