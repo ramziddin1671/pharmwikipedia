@@ -14,7 +14,7 @@ class Organization(models.Model):
     logo = models.ImageField(upload_to='images/', blank=True)
     issn = models.CharField(max_length=150)
     top = models.BooleanField(default=False)
-    number_table = models.IntegerField(unique=True)
+    number_table = models.IntegerField(unique=True, blank=True, null=True)
 
     def __str__(self):
         return self.name

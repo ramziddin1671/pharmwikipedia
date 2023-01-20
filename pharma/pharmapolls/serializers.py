@@ -42,14 +42,16 @@ class AuthorSerializer(serializers.ModelSerializer):
     count_article = serializers.CharField(write_only=True)
 
     class Meta:
-        fields = ('id', 'name', 'surname', 'family_name', 'description', 'work', 'count_author', 'count_download', 'count_article')
+        fields = ('id', 'name_uz', 'name_ru', 'name_en', 'surname_uz', 'surname_ru', 'surname_en', 'family_name_uz', 'family_name_ru', 'family_name_en', 'description_uz', 'description_ru', 'description_en', 'work_uz', 'work_ru', 'work_en', 'count_author', 'count_download', 'count_article')
         model = models.Author
 
     def to_representation(self, instance):
         article = models.Statya.objects.filter(author__id=instance.id).aggregate(Sum('downloadview'))
         count_article = models.Statya.objects.filter(author__id=instance.id).count()
         data = super().to_representation(instance)
-        data['description'] = strip_tags(instance.description)
+        data['description_uz'] = strip_tags(instance.description)
+        data['description_ru'] = strip_tags(instance.description)
+        data['description_en'] = strip_tags(instance.description)
         data['count_download'] = article["downloadview__sum"]
         data['count_article'] = str(count_article)
         return data
@@ -63,10 +65,6 @@ class StatyaSerializer(serializers.ModelSerializer):
     class Meta:
         fields = ('id', 'author', 'name', 'jurnal', 'language', 'downloadfile', 'downloadview', 'views', 'date', 'keyword', )
         model = models.Statya
-
-
-
-
 
 
 class StatyaforAuthorSerializer(serializers.ModelSerializer):
@@ -85,14 +83,16 @@ class AuthorDetailSerializer(serializers.ModelSerializer):
     articles = StatyaforAuthorSerializer(many=True, source='article_author')
 
     class Meta:
-        fields = ('id', 'name', 'surname', 'family_name', 'description', 'work', 'count_author', 'count_download', 'count_article', 'articles')
+        fields = ('id', 'name_uz', 'name_ru', 'name_en', 'surname_uz', 'surname_ru', 'surname_en', 'family_name_uz', 'family_name_ru', 'family_name_en', 'description_uz', 'description_ru', 'description_en', 'work_uz', 'work_ru', 'work_en', 'count_author', 'count_download', 'count_article', 'articles')
         model = models.Author
 
     def to_representation(self, instance):
         article = models.Statya.objects.filter(author__id=instance.id).aggregate(Sum('downloadview'))
         count_article = models.Statya.objects.filter(author__id=instance.id).count()
         data = super().to_representation(instance)
-        data['description'] = strip_tags(instance.description)
+        data['description_uz'] = strip_tags(instance.description)
+        data['description_ru'] = strip_tags(instance.description)
+        data['description_en'] = strip_tags(instance.description)
         data['count_download'] = article["downloadview__sum"]
         data['count_article'] = str(count_article)
         return data
@@ -105,13 +105,15 @@ class JurnalDetailSerializer(serializers.ModelSerializer):
     articles = StatyaSerializer(many=True, source='journal_article')
 
     class Meta:
-        fields = ('id', 'author', 'organization', 'name', 'description', 'date', 'downloadview', 'views',
+        fields = ('id', 'author', 'organization', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'date', 'downloadview', 'views',
                   'pdf_file', 'keyword', 'image', 'articles' )
         model = models.Jurnal
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['description'] = strip_tags(instance.description)
+        data['description_uz'] = strip_tags(instance.description)
+        data['description_ru'] = strip_tags(instance.description)
+        data['description_en'] = strip_tags(instance.description)
         return data
 
 
@@ -120,15 +122,16 @@ class JurnalSerializer(serializers.ModelSerializer):
     organization = serializers.StringRelatedField()
 
     class Meta:
-        fields = ('id', 'author', 'organization', 'name', 'description', 'date', 'downloadview', 'views',
+        fields = ('id', 'author', 'organization', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'date', 'downloadview', 'views',
                   'pdf_file', 'keyword', 'image' )
         model = models.Jurnal
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['description'] = strip_tags(instance.description)
+        data['description_uz'] = strip_tags(instance.description)
+        data['description_ru'] = strip_tags(instance.description)
+        data['description_en'] = strip_tags(instance.description)
         return data
-
 
 
 class ConferenceSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from . import models
-from .models import Organization
+from .models import Organization, Author, Jurnal
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -30,9 +30,17 @@ class OrganizationAdmin(TranslationAdmin):
     model = Organization
 
 
+class AuthorAdmin(TranslationAdmin):
+    model = Author
+
+
+class JurnalAdmin(TranslationAdmin):
+    model = Jurnal
+
+
 admin.site.register(models.Organization, OrganizationAdmin)
-admin.site.register(models.Author,)
-admin.site.register(models.Jurnal,)
+admin.site.register(models.Author, AuthorAdmin)
+admin.site.register(models.Jurnal, JurnalAdmin)
 admin.site.register(models.Contact)
 admin.site.register(models.Subdivision,)
 admin.site.register(models.Statya,)
