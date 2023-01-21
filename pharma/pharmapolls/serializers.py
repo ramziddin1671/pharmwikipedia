@@ -118,8 +118,9 @@ class JurnalDetailSerializer(serializers.ModelSerializer):
 
 
 class JurnalSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField()
-    organization = serializers.StringRelatedField()
+    author = OrganizationSerializer()
+    organization = AuthorSerializer()
+
 
     class Meta:
         fields = ('id', 'author', 'organization', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'date', 'downloadview', 'views',

@@ -1,4 +1,14 @@
 
 .idea/workspace.xml
 /pharma/venv/
+/pharma/venv2/
 /pharma/env/
+
+./pharma/venv/
+./pharma/venv2/
+./pharma/env/
+
+
+.env
+.venv
+.venv2

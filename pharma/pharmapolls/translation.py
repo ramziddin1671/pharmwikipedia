@@ -14,4 +14,4 @@ class AuthorTranslationOptions(TranslationOptions):
 
 @register(models.Jurnal)
 class JurnalTranslationOptions(TranslationOptions):
-    fields = ('author', 'organization', 'name', 'description', )
+    fields = ('name', 'description', )
