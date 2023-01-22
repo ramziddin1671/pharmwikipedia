@@ -4,10 +4,12 @@
     <list default="true" id="cc3c3bcd-bb59-452e-af29-a5300e6ffe43" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharma/pharma/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharma/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/translation.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/translation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharma/pharmapolls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/pharmapolls/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pharma/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/pharma/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

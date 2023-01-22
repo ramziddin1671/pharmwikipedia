@@ -118,7 +118,7 @@ class PlanningConferenceApiView(generics.ListAPIView):
 
 
 class SeminarList(ListCreateAPIView):
-    queryset = None
+    queryset = models.Seminar.objects.all()
     serializer_class = serializers.SeminarSerializer
 
     def get(self, request):

@@ -51,6 +51,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",#heroku uchun qo'yildi
     'django.middleware.locale.LocaleMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -155,6 +156,7 @@ LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT =  os.path.join(BASE_DIR, 'static')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Default primary key field type
