@@ -28,7 +28,7 @@ class OrganizationDetail(generics.RetrieveAPIView):
 
 
 class AuthorList(generics.ListAPIView):
-    queryset = models.Author.objects.all().annotate(articles=Count('article_author')).order_by('-articles')
+    queryset = models.Author.objects.all().annotate(articles=Count('article_author')).order_by('-id')
     serializer_class = serializers.AuthorSerializer
     pagination_class = paginations.PaginateBy20
 
