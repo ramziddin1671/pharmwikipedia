@@ -113,12 +113,12 @@ class JurnalDetailSerializer(serializers.ModelSerializer):
 
 
 class JurnalSerializer(serializers.ModelSerializer):
-    author = OrganizationSerializer()
-    organization = AuthorSerializer()
+    author = AuthorSerializer()
+    organization = OrganizationSerializer()
 
 
     class Meta:
-        fields = ('id', 'author_uz', 'author_ru', 'author_en', 'organization_uz', 'organization_ru', 'organization_en', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'date', 'downloadview', 'views',
+        fields = ('id', 'author', 'organization', 'name_uz', 'name_ru', 'name_en', 'description_uz', 'description_ru', 'description_en', 'date', 'downloadview', 'views',
                   'pdf_file', 'keyword', 'image' )
         model = models.Jurnal
 
