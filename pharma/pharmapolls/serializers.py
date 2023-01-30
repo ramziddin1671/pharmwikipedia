@@ -210,7 +210,7 @@ class FaqSerializer(serializers.ModelSerializer):
 class BannerSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ('title_uz', 'title_ru', 'title_en', 'subtitle_uz', 'subtitle_ru', 'subtitle_en', 'button_uz', 'button_ru', 'button_en', 'video_banner', )
+        fields = ('title_uz', 'title_ru', 'title_en', 'subtitle_uz', 'subtitle_ru', 'subtitle_en', 'button_uz', 'button_ru', 'button_en', 'video_banner', 'link')
         model = models.Banner
 
 
