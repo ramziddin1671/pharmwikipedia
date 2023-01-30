@@ -185,7 +185,7 @@ class FaqList(ListCreateAPIView):
     serializer_class = serializers.FaqSerializer
 
 
-class BannerList(ListCreateAPIView):
+class BannerList(generics.ListAPIView):
     queryset = models.Banner.objects.all()
     serializer_class = serializers.BannerSerializer
 

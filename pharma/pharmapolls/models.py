@@ -171,6 +171,7 @@ class Banner(models.Model):
     subtitle = models.CharField(max_length=200)
     button = models.CharField(max_length=20)
     video_banner = models.FileField(upload_to='media', blank=True, null=True)
+    link = models.URLField(max_length=200)
 
     def __str__(self):
         return self.title
