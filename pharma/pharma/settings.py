@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CORS_ALLOWED_ORIGINS = [
 "https://domain.com",
-"http://localhost:8080/",
+"http://localhost:8080",
 "https://jurnal-uz.netlify.app",
-"https://ramziddinjurabek.pythonanywhere.com/",
+"https://ramziddinjurabek.pythonanywhere.com",
 ]
 
 
